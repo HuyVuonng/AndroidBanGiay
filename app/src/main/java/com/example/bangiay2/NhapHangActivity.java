@@ -11,7 +11,9 @@ import android.widget.ListView;
 
 import com.example.bangiay2.Adapter.Hang_Adapter;
 import com.example.bangiay2.Adapter.NhapHang_Adapter;
+import com.example.bangiay2.Class.ChitietHoaDonNhap;
 import com.example.bangiay2.Class.Hang;
+import com.example.bangiay2.Class.HoaDonNhap;
 import com.example.bangiay2.Database.DatabaseQuanLy;
 
 import java.util.ArrayList;
@@ -21,6 +23,8 @@ public class NhapHangActivity extends AppCompatActivity {
     DatabaseQuanLy database;
     NhapHang_Adapter adapter;
     ArrayList<Hang> arrayList;
+
+
     ListView lv;
     Intent intent;
     @Override
@@ -29,6 +33,8 @@ public class NhapHangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nhap_hang);
 
         arrayList=new ArrayList<>();
+
+
         lv=findViewById(R.id.lvloaigiayNhap);
         adapter = new NhapHang_Adapter(this,R.layout.dong_nhap_hang,arrayList);
         lv.setAdapter(adapter);

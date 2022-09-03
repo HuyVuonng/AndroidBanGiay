@@ -53,17 +53,34 @@ public class SuaSP_Activity extends AppCompatActivity {
             public void onClick(View view) {
                 String tenmoi = edtTensp.getText().toString().trim();
                 String SLmoi= edtSL.getText().toString().trim();
-                int SLmoiINT= Integer.parseInt(SLmoi);
+                boolean slDangSo=false;
 
+                //Kiem tra số lượng có phải số không
+                try {
+                    Integer.parseInt(SLmoi);
+                    slDangSo=true;
+                }
+                catch (NumberFormatException e){
+//
+                    slDangSo=false;
+                }
 
                 if(TextUtils.isEmpty(tenmoi)||TextUtils.isEmpty(SLmoi)){
                     Toast.makeText(SuaSP_Activity.this,"Vui lòng nhập đủ thông tin",Toast.LENGTH_LONG).show();
                 }
                 else{
-                    database.QuerryData("UPDATE Hang SET TENlOAIGIAY='"+tenmoi+"',Sl='"+SLmoiINT+"'WHERE MAHANG='"+maspsua+"'");
-                    Toast.makeText(SuaSP_Activity.this,"Cập nhật thành công!!",Toast.LENGTH_LONG).show();
-                    intent=new Intent(SuaSP_Activity.this,HangTrongKho_Activity.class);
-                    startActivity(intent);
+                    if(slDangSo){
+                        int SLmoiINT= Integer.parseInt(SLmoi);
+                        database.QuerryData("UPDATE Hang SET TENlOAIGIAY='"+tenmoi+"',Sl='"+SLmoiINT+"'WHERE MAHANG='"+maspsua+"'");
+                        Toast.makeText(SuaSP_Activity.this,"Cập nhật thành công!!",Toast.LENGTH_LONG).show();
+                        intent=new Intent(SuaSP_Activity.this,HangTrongKho_Activity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(SuaSP_Activity.this,"Số lượng phải là dạng số",Toast.LENGTH_LONG).show();
+
+                    }
+
                 }
             }
         });
