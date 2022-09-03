@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         nhaphang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent= new Intent(MainActivity.this,NhapHangActivity.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Nhập hàng", Toast.LENGTH_LONG).show();
             }
         });
