@@ -3,6 +3,7 @@ package com.example.bangiay2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class HangTrongKho_Activity extends AppCompatActivity {
     DatabaseQuanLy database;
     ListView lv;
+    Intent intent;
     ArrayList<Hang> arrayList;
     Hang_Adapter adapter;
     @Override
@@ -75,8 +77,8 @@ public class HangTrongKho_Activity extends AppCompatActivity {
 
         TextView textXacNhanSPXoa= dialog.findViewById(R.id.XacNhanXoaTXT);
 
-        Button btnXoa=(Button)dialog.findViewById(R.id.buttonXacNhanXoa);
-        Button btnHuyXoa=(Button)dialog.findViewById(R.id.buttonHuy);
+        Button btnXoa=dialog.findViewById(R.id.buttonXacNhanXoa);
+        Button btnHuyXoa=dialog.findViewById(R.id.buttonHuy);
 
 
         textXacNhanSPXoa.setText("Bạn có cắc chắn muốn xóa "+tenSp+"?");
@@ -88,7 +90,9 @@ public class HangTrongKho_Activity extends AppCompatActivity {
                     database.QuerryData("Delete from Hang WHERE MAHANG='"+maHang+"'");
                     Toast.makeText(HangTrongKho_Activity.this,"Xóa thành công",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
-                    hienthiDL();
+                    intent= new Intent(HangTrongKho_Activity.this,HangTrongKho_Activity.class);
+                    startActivity(intent);
+//                    hienthiDL();
             }
         });
 

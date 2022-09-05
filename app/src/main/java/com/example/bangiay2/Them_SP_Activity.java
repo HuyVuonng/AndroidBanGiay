@@ -82,7 +82,7 @@ public class Them_SP_Activity extends AppCompatActivity {
                 int slhangThemINT;
 
                 boolean slDangSo=false;
-                boolean matontai;
+
 
                 maHangThem=maSPThem.getText().toString().trim();
                 tenHangThem=tenSPThem.getText().toString().trim();
@@ -103,18 +103,9 @@ public class Them_SP_Activity extends AppCompatActivity {
 
                     if(slDangSo){
                         slhangThemINT=Integer.parseInt(slhangThem);
-                        for(int i=0;i<arrayList.size();i++){
-                            if(maHangThem.equals(arrayList.get(i).getMaHang())){
-                                matontai=true;
-                                break;
-                            }
-                            else{
-                                matontai=false;
-                            }
 
-                        }
 
-                        if(matontai=true){
+
                             slCu = Integer.parseInt(slsp);
                             slTong= slCu+slhangThemINT;
                             int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
@@ -125,18 +116,7 @@ public class Them_SP_Activity extends AppCompatActivity {
                             Toast.makeText(Them_SP_Activity.this,"Thêm thành công",Toast.LENGTH_LONG).show();
                             intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
                             startActivity(intent);
-                        }
-                        else{
-                            int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
-                            String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
 
-
-                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"')");
-                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"')");
-                            Toast.makeText(Them_SP_Activity.this,"Them thành công",Toast.LENGTH_LONG).show();
-                            intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
-                            startActivity(intent);
-                        }
 
                     }
 

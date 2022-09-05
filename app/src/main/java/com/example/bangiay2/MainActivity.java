@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
         hoadonnhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent= new Intent(MainActivity.this,QLHoaDonNhap.class);
+                startActivity(intent);
                 Toast.makeText(MainActivity.this, "Hóa đơn nhập", Toast.LENGTH_LONG).show();
             }
         });
