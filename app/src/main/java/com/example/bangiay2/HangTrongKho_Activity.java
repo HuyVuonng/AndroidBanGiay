@@ -42,12 +42,12 @@ public class HangTrongKho_Activity extends AppCompatActivity {
 
 
         //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY , TENlOAIGIAY VARCHAR(200),Sl INTEGER)");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY , TENlOAIGIAY VARCHAR(200),Sl INTEGER,Gia Float)");
 
         //Them DULieu
 
-//       database.QuerryData("INSERT INTO Hang VALUES('MH1','Giày thể thao',5)");
-//       database.QuerryData("INSERT INTO Hang VALUES('MH2','Giày NIKE',10)");
+//       database.QuerryData("INSERT INTO Hang VALUES('MH1','Giày thể thao',5,10000)");
+//       database.QuerryData("INSERT INTO Hang VALUES('MH2','Giày NIKE',10,20000)");
 
         hienthiDL();
 
@@ -64,7 +64,8 @@ public class HangTrongKho_Activity extends AppCompatActivity {
             int SL = dataHang.getInt(2);
             String TenHang = dataHang.getString(1);
             String MaHang = dataHang.getString(0);
-            arrayList.add(new Hang(MaHang,TenHang,SL));
+            float Gia=dataHang.getInt(3);
+            arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
         }
         adapter.notifyDataSetChanged();
     }

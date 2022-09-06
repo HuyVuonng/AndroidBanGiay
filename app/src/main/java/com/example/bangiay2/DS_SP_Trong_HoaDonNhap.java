@@ -47,10 +47,11 @@ public class DS_SP_Trong_HoaDonNhap extends AppCompatActivity {
         while (dataHangHDNHap.moveToNext()) {
             int maHD = dataHangHDNHap.getInt(0);
             int Sl=dataHangHDNHap.getInt(4);
+            float gia= dataHangHDNHap.getFloat(5);
             String maHang=dataHangHDNHap.getString(2);
             String tenHang=dataHangHDNHap.getString(3);
             String ngaytaoHD = dataHangHDNHap.getString(1);
-            arrayList.add(new ChitietHoaDonNhap(maHD,Sl,maHang,tenHang,ngaytaoHD));
+            arrayList.add(new ChitietHoaDonNhap(maHD,Sl,maHang,tenHang,ngaytaoHD,gia));
         }
         adapter.notifyDataSetChanged();
 

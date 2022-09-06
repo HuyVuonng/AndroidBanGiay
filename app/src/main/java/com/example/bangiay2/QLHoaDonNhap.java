@@ -54,13 +54,24 @@ public class QLHoaDonNhap extends AppCompatActivity {
     }
 
     private void hienthiDL() {
-        Cursor dataHDNHap = database.GetData("SELECT * FROM HoaDonNhap");
+        Cursor dataHDNHap = database.GetData("SELECT * FROM HoaDonNhap order by maHD DESC");
+        Cursor dataChitietHoadonNhap = database.GetData("SELECT maHD, SUM(GiaNhap) as TONGTIENNHAP,SUM(Sl) as TONGSOSP,maHang FROM ChiTietHoaDonNhap group by maHD,maHang order by maHD DESC");
         arrayList.clear();
         while (dataHDNHap.moveToNext()) {
+            float TONGTIENNHAP=0;
+            float TONGTIENMATHANG=0;
             int maHD = dataHDNHap.getInt(0);
-
             String ngaytaoHD = dataHDNHap.getString(1);
-            arrayList.add(new HoaDonNhap(ngaytaoHD,maHD));
+            while(dataChitietHoadonNhap.moveToNext()){
+                int maHDCHitiet=dataChitietHoadonNhap.getInt(0);
+                if(maHDCHitiet==maHD){
+                    TONGTIENMATHANG=dataChitietHoadonNhap.getFloat(1)*dataChitietHoadonNhap.getInt(2);;
+                    TONGTIENNHAP+=TONGTIENMATHANG;
+
+                }
+            }
+            dataChitietHoadonNhap.moveToFirst();
+            arrayList.add(new HoaDonNhap(ngaytaoHD,maHD,TONGTIENNHAP));
         }
         adapter.notifyDataSetChanged();
     }

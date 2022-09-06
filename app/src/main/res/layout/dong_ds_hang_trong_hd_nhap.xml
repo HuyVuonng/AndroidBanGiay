@@ -17,6 +17,16 @@
             android:text="Tên sảm phẩm"
             android:textAllCaps="true"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/giaspTRongdsHoaDon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/tenspTRongdsHoaDon"
+            android:text="Giá:"
+            android:textAllCaps="true"
+            android:textSize="13dp" />
         <TextView
             android:layout_below="@+id/tenspTRongdsHoaDon"
             android:id="@+id/masptrongHDNHAP"

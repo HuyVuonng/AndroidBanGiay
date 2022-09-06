@@ -41,7 +41,7 @@ public class DSHangTrongHoaDonNhapAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-        TextView tensp,masp,sl;
+        TextView tensp,masp,sl,gia;
 
     }
 
@@ -57,6 +57,7 @@ public class DSHangTrongHoaDonNhapAdapter extends BaseAdapter {
             viewHolder.tensp= view.findViewById(R.id.tenspTRongdsHoaDon);
             viewHolder.masp=view.findViewById(R.id.masptrongHDNHAP);
             viewHolder.sl=view.findViewById(R.id.soluongsptronghdnhap);
+            viewHolder.gia=view.findViewById(R.id.giaspTRongdsHoaDon);
 
 
         }
@@ -65,9 +66,11 @@ public class DSHangTrongHoaDonNhapAdapter extends BaseAdapter {
         }
         ChitietHoaDonNhap HD= ChiTietHoadonNhapList.get(i);
         String sl=Integer.toString(HD.getSoLuong());
+        String gianhap= Float.toString(HD.getGiaNhap());
         viewHolder.tensp.setText(HD.getTenHang());
         viewHolder.masp.setText("Mã SP: "+HD.getMaHang());
         viewHolder.sl.setText("Sl: "+sl);
+        viewHolder.gia.setText("Giá: "+gianhap);
         return view;
     }
 }

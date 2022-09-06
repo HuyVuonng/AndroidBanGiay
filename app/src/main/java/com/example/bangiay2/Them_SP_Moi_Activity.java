@@ -22,7 +22,7 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
 
     Intent intent;
     DatabaseQuanLy database;
-    EditText maSPThem,tenSPThem,SlSpThem;
+    EditText maSPThem,tenSPThem,SlSpThem,GiaSpThem;
     int slCu,slTong;
     String tensp,masp,slsp;
     Button btnThem,btnHuy;
@@ -41,12 +41,13 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
         database= new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite",null,1);
 
         //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHD INTEGER ,NgayTao VARCHAR(50),maHang VARCHAR(50),tenHang VARCHAR(50),Sl INTEGER)");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHD INTEGER ,NgayTao VARCHAR(50),maHang VARCHAR(50),tenHang VARCHAR(50),Sl INTEGER,GiaNhap Float)");
 
 
         maSPThem=findViewById(R.id.editTextMaSanPhamThemMoi);
         tenSPThem=findViewById(R.id.editTextTenSanPhamThemMoi);
         SlSpThem=findViewById(R.id.editTextSoLuongSanPhamThemMoi);
+        GiaSpThem=findViewById(R.id.editTextGiaSanPhamThemMoi);
         btnThem=findViewById(R.id.btnThemSPMoiVaoKho);
         btnHuy=findViewById(R.id.btnHuyThemSPMoi);
 
@@ -64,8 +65,9 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maHangThem,tenHangThem,slhangThem;
+                String maHangThem,tenHangThem,slhangThem,giaSPNhap;
                 int slhangThemINT;
+                float giaHagThemFloat,giaban;
 
                 boolean slDangSo=false;
 
@@ -73,8 +75,10 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
                 maHangThem=maSPThem.getText().toString().trim();
                 tenHangThem=tenSPThem.getText().toString().trim();
                 slhangThem=SlSpThem.getText().toString().trim();
+                giaSPNhap=GiaSpThem.getText().toString().trim();
                 try {
                     Integer.parseInt(slhangThem);
+                    Float.parseFloat(giaSPNhap);
                     slDangSo=true;
                 }
                 catch (NumberFormatException e){
@@ -89,6 +93,11 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
 
                     if(slDangSo){
                         slhangThemINT=Integer.parseInt(slhangThem);
+                        giaHagThemFloat=Float.parseFloat(giaSPNhap);
+
+                        float lai=giaHagThemFloat/10;
+
+                        giaban=giaHagThemFloat+lai;
 
 
 
@@ -96,8 +105,8 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
                             String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
 
 
-                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"')");
-                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"')");
+                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaban+"')");
+                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
                             Toast.makeText(Them_SP_Moi_Activity.this,"Them Sp moi thành công",Toast.LENGTH_LONG).show();
                             intent= new Intent(Them_SP_Moi_Activity.this,NhapHangActivity.class);
                             startActivity(intent);
@@ -106,7 +115,7 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
                     }
 
                     else{
-                        Toast.makeText(Them_SP_Moi_Activity.this,"Số lượng phải là dạng số",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Them_SP_Moi_Activity.this,"Số lượng và giá phải là dạng số",Toast.LENGTH_LONG).show();
                     }
                 }
 

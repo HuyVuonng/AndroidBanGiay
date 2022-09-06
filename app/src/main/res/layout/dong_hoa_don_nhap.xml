@@ -18,6 +18,15 @@
             android:textAllCaps="true"
             android:textSize="20dp" />
         <TextView
+            android:id="@+id/tongsotiennhap"
+            android:layout_toRightOf="@+id/maHDNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:text="Tổng tiền"
+            android:textAllCaps="true"
+            android:textSize="15dp" />
+        <TextView
             android:layout_below="@+id/maHDNhap"
             android:id="@+id/ngayNhapHang"
             android:layout_marginLeft="80dp"

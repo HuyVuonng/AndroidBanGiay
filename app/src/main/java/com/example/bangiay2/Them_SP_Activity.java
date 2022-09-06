@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class Them_SP_Activity extends AppCompatActivity {
     Intent intent;
     DatabaseQuanLy database;
-    EditText maSPThem,tenSPThem,SlSpThem;
+    EditText maSPThem,tenSPThem,SlSpThem,GiaSpThem;
     int slCu,slTong;
     String tensp,masp,slsp;
     Button btnThem,btnHuy;
@@ -44,7 +44,7 @@ public class Them_SP_Activity extends AppCompatActivity {
         database= new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite",null,1);
 
         //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHD INTEGER ,NgayTao VARCHAR(50),maHang VARCHAR(50),tenHang VARCHAR(50),Sl INTEGER)");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHD INTEGER ,NgayTao VARCHAR(50),maHang VARCHAR(50),tenHang VARCHAR(50),Sl INTEGER,GiaNhap Float)");
 
         tensp = getIntent().getStringExtra("tenSpThem");
         masp = getIntent().getStringExtra("maSpThem");
@@ -53,6 +53,7 @@ public class Them_SP_Activity extends AppCompatActivity {
         maSPThem=findViewById(R.id.editTextMaSanPhamThem);
         tenSPThem=findViewById(R.id.editTextTenSanPhamThem);
         SlSpThem=findViewById(R.id.editTextSoLuongSanPhamThem);
+        GiaSpThem=findViewById(R.id.editTextGiaSanPhamThem);
         btnThem=findViewById(R.id.btnThemSPVaoKho);
         btnHuy=findViewById(R.id.btnHuyThemSP);
 
@@ -78,8 +79,9 @@ public class Them_SP_Activity extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maHangThem,tenHangThem,slhangThem;
+                String maHangThem,tenHangThem,slhangThem,giaSPNhap;
                 int slhangThemINT;
+                float giaHagThemFloat,giaban;
 
                 boolean slDangSo=false;
 
@@ -87,8 +89,11 @@ public class Them_SP_Activity extends AppCompatActivity {
                 maHangThem=maSPThem.getText().toString().trim();
                 tenHangThem=tenSPThem.getText().toString().trim();
                 slhangThem=SlSpThem.getText().toString().trim();
+                giaSPNhap=GiaSpThem.getText().toString().trim();
+
                 try {
                     Integer.parseInt(slhangThem);
+                    Float.parseFloat(giaSPNhap);
                     slDangSo=true;
                 }
                 catch (NumberFormatException e){
@@ -96,13 +101,18 @@ public class Them_SP_Activity extends AppCompatActivity {
                     slDangSo=false;
                 }
 
-                if(TextUtils.isEmpty(maHangThem)||TextUtils.isEmpty(tenHangThem)||TextUtils.isEmpty(slhangThem)){
+                if(TextUtils.isEmpty(maHangThem)||TextUtils.isEmpty(tenHangThem)||TextUtils.isEmpty(slhangThem)||TextUtils.isEmpty(giaSPNhap)){
                     Toast.makeText(Them_SP_Activity.this,"Hãy nhập đủ thông tin",Toast.LENGTH_LONG).show();
                 }
                 else{
 
                     if(slDangSo){
                         slhangThemINT=Integer.parseInt(slhangThem);
+                        giaHagThemFloat=Float.parseFloat(giaSPNhap);
+
+                        float lai=giaHagThemFloat/10;
+
+                        giaban=giaHagThemFloat+lai;
 
 
 
@@ -111,17 +121,18 @@ public class Them_SP_Activity extends AppCompatActivity {
                             int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
                             String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
 
-                            database.QuerryData("UPDATE Hang SET Sl='"+slTong+"' WHERE MAHANG='"+maHangThem+"'");
-                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"')");
+                            database.QuerryData("UPDATE Hang SET Sl='"+slTong+"',Gia= '"+giaban+"' WHERE MAHANG='"+maHangThem+"'");
+                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
                             Toast.makeText(Them_SP_Activity.this,"Thêm thành công",Toast.LENGTH_LONG).show();
-                            intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
+
+                        intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
                             startActivity(intent);
 
 
                     }
 
                     else{
-                        Toast.makeText(Them_SP_Activity.this,"Số lượng phải là dạng số",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Them_SP_Activity.this,"Số lượng và giá phải là dạng số",Toast.LENGTH_LONG).show();
                     }
                     }
 

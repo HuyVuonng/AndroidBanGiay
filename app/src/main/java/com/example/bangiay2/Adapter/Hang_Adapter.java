@@ -48,7 +48,7 @@ public class Hang_Adapter extends BaseAdapter
     }
 
     private class ViewHolder{
-        TextView tvTenSP,tvMagiay,tvSL;
+        TextView tvTenSP,tvMagiay,tvSL,tvgia;
         ImageView imgSua,imgXoa;
     }
 
@@ -66,6 +66,8 @@ public class Hang_Adapter extends BaseAdapter
             viewHolder.tvSL=view.findViewById((R.id.soluongsptrongkho));
             viewHolder.imgSua=view.findViewById(R.id.btnedit);
             viewHolder.imgXoa=view.findViewById(R.id.btndelete);
+            viewHolder.tvgia=view.findViewById(R.id.giasptrongkho);
+
 
         }
         else{
@@ -73,9 +75,11 @@ public class Hang_Adapter extends BaseAdapter
         }
         Hang Sp= HangList.get(i);
         String SL=Integer.toString(Sp.getSoLuong());
+        String giaSp= Float.toString(Sp.getGia());
         viewHolder.tvTenSP.setText(Sp.getTenHang());
         viewHolder.tvMagiay.setText("Mã SP: "+Sp.getMaHang());
         viewHolder.tvSL.setText("SL: "+SL);
+        viewHolder.tvgia.setText("Giá: "+giaSp);
 
 
         viewHolder.imgSua.setOnClickListener(new View.OnClickListener() {

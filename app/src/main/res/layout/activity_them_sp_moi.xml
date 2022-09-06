@@ -53,13 +53,21 @@
             android:hint="Số lượng sản phẩm"
             android:inputType="textPersonName"
             android:textSize="20sp" />
+        <EditText
+            android:id="@+id/editTextGiaSanPhamThemMoi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextSoLuongSanPhamThemMoi"
+            android:hint="Giá nhập sản phẩm"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2"
-            android:layout_below="@+id/editTextSoLuongSanPhamThemMoi">
+            android:layout_below="@+id/editTextGiaSanPhamThemMoi">
 
             <Button
                 android:layout_width="0dp"

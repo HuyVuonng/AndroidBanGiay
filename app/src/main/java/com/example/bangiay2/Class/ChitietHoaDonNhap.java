@@ -3,6 +3,7 @@ package com.example.bangiay2.Class;
 public class ChitietHoaDonNhap {
     int MaHoaDon,soLuong;
     String MaHang,TenHang,NgayNhap;
+    float giaNhap;
 
     public ChitietHoaDonNhap(int maHoaDon, int soLuong, String maHang, String tenHang, String ngayNhap) {
         MaHoaDon = maHoaDon;
@@ -10,6 +11,28 @@ public class ChitietHoaDonNhap {
         MaHang = maHang;
         TenHang = tenHang;
         NgayNhap = ngayNhap;
+    }
+
+    public ChitietHoaDonNhap(int maHoaDon, int soLuong, String maHang, String tenHang, String ngayNhap, float giaNhap) {
+        MaHoaDon = maHoaDon;
+        this.soLuong = soLuong;
+        MaHang = maHang;
+        TenHang = tenHang;
+        NgayNhap = ngayNhap;
+        this.giaNhap = giaNhap;
+    }
+
+    public ChitietHoaDonNhap(int maHoaDon, float giaNhap) {
+        MaHoaDon = maHoaDon;
+        this.giaNhap = giaNhap;
+    }
+
+    public float getGiaNhap() {
+        return giaNhap;
+    }
+
+    public void setGiaNhap(float giaNhap) {
+        this.giaNhap = giaNhap;
     }
 
     public String getNgayNhap() {

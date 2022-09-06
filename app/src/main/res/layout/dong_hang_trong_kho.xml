@@ -16,25 +16,38 @@
            android:text="Tên sảm phẩm"
            android:textAllCaps="true"
            android:textSize="20dp" />
+
        <TextView
-           android:layout_below="@+id/tensptrongkhonsptrongkho"
            android:id="@+id/masptrongkho"
-           android:layout_marginLeft="80dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
+           android:layout_below="@+id/tensptrongkhonsptrongkho"
+           android:layout_marginLeft="80dp"
            android:text="Mã sảm phẩm"
            android:textAllCaps="true"
-           android:textSize="13dp"/>
+           android:textSize="13dp" />
        <TextView
            android:layout_below="@+id/tensptrongkhonsptrongkho"
             android:layout_toRightOf="@+id/masptrongkho"
            android:id="@+id/soluongsptrongkho"
-           android:layout_marginLeft="80dp"
+           android:layout_marginLeft="30dp"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="SL:"
            android:textAllCaps="true"
            android:textSize="13dp"/>
+
+       <TextView
+           android:id="@+id/giasptrongkho"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/tensptrongkhonsptrongkho"
+           android:layout_marginLeft="30dp"
+           android:layout_toRightOf="@+id/soluongsptrongkho"
+           android:text="Giá:"
+           android:textAllCaps="true"
+           android:textSize="13dp" />
+
        <ImageView
            android:id="@+id/btnedit"
            android:layout_toLeftOf="@+id/btndelete"

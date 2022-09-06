@@ -56,12 +56,22 @@
             android:inputType="textPersonName"
             android:textSize="20sp" />
 
-    <LinearLayout
+        <EditText
+            android:id="@+id/editTextGiaSanPhamThem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextSoLuongSanPhamThem"
+            android:hint="Giá nhập sản phẩm"
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
+
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_below="@+id/editTextSoLuongSanPhamThem">
+        android:layout_below="@+id/editTextGiaSanPhamThem">
 
         <Button
             android:layout_width="0dp"

@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Tạo hóa đơn thành công", Toast.LENGTH_LONG).show();
                             intent= new Intent(MainActivity.this,NhapHangActivity.class);
                             startActivity(intent);
+                            dialog.dismiss();
                         }
 
                     }
