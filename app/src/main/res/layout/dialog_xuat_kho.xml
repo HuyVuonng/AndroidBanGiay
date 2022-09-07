@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+    android:padding="20dp">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#FFEB3B"
+        android:text="Xuất Hàng"
+        android:textAllCaps="true"
+        android:background="@color/purple_700"/>
+    <TextView
+        android:id="@+id/maHangDangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="Mã hàng xuất:"
+        android:textAllCaps="true"/>
+    <TextView
+        android:id="@+id/tenHangDangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="Tên Hàng:"
+        android:textAllCaps="true"/>
+    <TextView
+        android:id="@+id/GiaHangDangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Giá"
+        android:textAllCaps="true" />
+    <TextView
+        android:id="@+id/SLTRongKho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:text="Còn: "
+        android:textAllCaps="true" />
+    <EditText
+        android:id="@+id/SoluongHangXuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:hint="Số Lượng Xuất"
+        android:inputType="number"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:weightSum="2"
+       >
+       <Button
+           android:id="@+id/btnXuatHang"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="Xuất Kho"
+           android:textSize="20sp"
+           android:layout_margin="5dp"/>
+
+       <Button
+           android:id="@+id/btnHuyXuathang"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="Hủy"
+           android:textSize="20sp"
+           android:layout_margin="5dp"/>
+
+   </LinearLayout>
+
+</LinearLayout>

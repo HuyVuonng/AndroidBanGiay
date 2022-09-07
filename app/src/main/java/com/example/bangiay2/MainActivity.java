@@ -96,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
         xuathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Xuất hàng", Toast.LENGTH_LONG).show();
+                intent= new Intent(MainActivity.this,XuatKhoActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "Xuất hàng", Toast.LENGTH_SHORT).show();
             }
         });
 
