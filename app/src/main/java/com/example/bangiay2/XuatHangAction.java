@@ -3,6 +3,7 @@ package com.example.bangiay2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,10 +12,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bangiay2.Class.ChiTiethoaDonXuat;
+import com.example.bangiay2.Class.ChitietHoaDonNhap;
+import com.example.bangiay2.Class.Hang;
+import com.example.bangiay2.Class.HoaDonNhap;
+import com.example.bangiay2.Class.HoaDonXuat;
+import com.example.bangiay2.Database.DatabaseQuanLy;
+
+import java.util.ArrayList;
+
 public class XuatHangAction extends AppCompatActivity {
     String maSp,tenSp,SlSP,Gia;
     Intent intent;
     int SLSPCON;
+    DatabaseQuanLy database;
+    ArrayList<Hang> arrayList;
+    ArrayList<HoaDonXuat> arrayListHoaDonXuat;
+    ArrayList<ChiTiethoaDonXuat> arrayListChiTietHoaDonXuat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +55,18 @@ public class XuatHangAction extends AppCompatActivity {
         textGiaSpXuat.setText("Giá: "+Gia);
         textSLSPCOn.setText("Còn: "+SlSP);
 
+
+        database= new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite",null,1);
+
+        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonXuat (maHD INTEGER ,NgayTao VARCHAR(50),maHang VARCHAR(50),tenHang VARCHAR(50),Sl INTEGER,GiaXuat Float)");
+
+        arrayList= new ArrayList<>();
+        arrayListChiTietHoaDonXuat= new ArrayList<>();
+        arrayListHoaDonXuat= new ArrayList<>();
+
+        getdata();
+        getdataHoaDonXuat();
+
         btnHuyXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +92,17 @@ public class XuatHangAction extends AppCompatActivity {
                             Toast.makeText(XuatHangAction.this,"Só lượng xuất lớn hơn số lượng hiện có, mời nhập lại",Toast.LENGTH_SHORT).show();
                         }
                         else{
-                            Toast.makeText(XuatHangAction.this,"Chạy Xử lý",Toast.LENGTH_SHORT).show();
+                            int SlconLaiSauXuat=SLSPCON-SLXuatINT;
+                            int maHD=arrayListHoaDonXuat.get(arrayListHoaDonXuat.size()-1).getMaHoaDon();
+                            String NgaylapHD=arrayListHoaDonXuat.get(arrayListHoaDonXuat.size()-1).getNgayTaoHoaDon().toString().trim();
+
+                            float giaXuatFloat= Float.parseFloat(Gia);
+                            database.QuerryData("UPDATE Hang SET Sl='"+SlconLaiSauXuat+"' WHERE MAHANG='"+maSp+"'");
+                            database.QuerryData("INSERT INTO ChiTietHoaDonXuat VALUES('"+maHD+"','"+NgaylapHD+"','"+maSp+"','"+tenSp+"','"+SLXuatINT+"','"+giaXuatFloat+"')");
+                            Toast.makeText(XuatHangAction.this,"Thêm thành công",Toast.LENGTH_LONG).show();
+
+                            intent= new Intent(XuatHangAction.this,XuatKhoActivity.class);
+                            startActivity(intent);
 
 
                     }
@@ -75,5 +111,26 @@ public class XuatHangAction extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getdata() {
+        Cursor dataHang = database.GetData("SELECT * FROM Hang ");
+        arrayList.clear();
+        while (dataHang.moveToNext()) {
+            int SL = dataHang.getInt(2);
+            String tenHang = dataHang.getString(1);
+            String maHang = dataHang.getString(0);
+            arrayList.add(new Hang(maHang, tenHang, SL));
+        }
+    }
+
+    private void getdataHoaDonXuat(){
+        Cursor dataHoaDonXuat = database.GetData("SELECT * FROM HoaDonXuat ");
+        arrayList.clear();
+        while (dataHoaDonXuat.moveToNext()) {
+            int maHD = dataHoaDonXuat.getInt(0);
+            String ngayNhap = dataHoaDonXuat.getString(1);
+            arrayListHoaDonXuat.add(new HoaDonXuat(ngayNhap,maHD));
+        }
     }
 }

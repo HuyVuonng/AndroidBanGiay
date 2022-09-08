@@ -14,6 +14,14 @@ public class ChiTiethoaDonXuat {
         this.giaXuat = giaXuat;
     }
 
+    public ChiTiethoaDonXuat(int maHoaDon, int soLuong, String maHang, String tenHang, String ngayXuat) {
+        MaHoaDon = maHoaDon;
+        this.soLuong = soLuong;
+        MaHang = maHang;
+        TenHang = tenHang;
+        NgayXuat = ngayXuat;
+    }
+
     public int getMaHoaDon() {
         return MaHoaDon;
     }
