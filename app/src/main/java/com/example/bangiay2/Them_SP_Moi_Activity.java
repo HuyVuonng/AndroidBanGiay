@@ -92,6 +92,7 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
                 else{
 
                     if(slDangSo){
+                        int tonatai=0;
                         slhangThemINT=Integer.parseInt(slhangThem);
                         giaHagThemFloat=Float.parseFloat(giaSPNhap);
 
@@ -100,16 +101,30 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
                         giaban=giaHagThemFloat+lai;
 
 
+                            for(int i=0;i<arrayList.size();i++){
+                                if(maHangThem.equalsIgnoreCase(arrayList.get(i).getMaHang().toString().trim())){
+                                    tonatai=1;
+                                }
+                            }
 
-                            int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
-                            String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
+
+                            if(tonatai==1){
+                                Toast.makeText(Them_SP_Moi_Activity.this,"Đã tồn tại mã này",Toast.LENGTH_SHORT).show();
+                            }
+
+                            else{
+                                int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
+                                String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
 
 
-                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaban+"')");
-                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
-                            Toast.makeText(Them_SP_Moi_Activity.this,"Them Sp moi thành công",Toast.LENGTH_LONG).show();
-                            intent= new Intent(Them_SP_Moi_Activity.this,NhapHangActivity.class);
-                            startActivity(intent);
+                                database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaban+"')");
+                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
+                                Toast.makeText(Them_SP_Moi_Activity.this,"Them Sp moi thành công",Toast.LENGTH_LONG).show();
+                                intent= new Intent(Them_SP_Moi_Activity.this,NhapHangActivity.class);
+                                startActivity(intent);
+                            }
+
+
 
 
                     }
@@ -138,7 +153,7 @@ public class Them_SP_Moi_Activity extends AppCompatActivity {
 
     private void getdataHoaDonNhap(){
         Cursor dataHoaDonNhap = database.GetData("SELECT * FROM HoaDonNhap ");
-        arrayList.clear();
+        arrayListHoaDonNhap.clear();
         while (dataHoaDonNhap.moveToNext()) {
             int maHD = dataHoaDonNhap.getInt(0);
             String ngayNhap = dataHoaDonNhap.getString(1);

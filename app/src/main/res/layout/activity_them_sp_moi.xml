@@ -51,15 +51,16 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextTenSanPhamThemMoi"
             android:hint="Số lượng sản phẩm"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textSize="20sp" />
+
         <EditText
             android:id="@+id/editTextGiaSanPhamThemMoi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextSoLuongSanPhamThemMoi"
             android:hint="Giá nhập sản phẩm"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textSize="20sp" />
 
         <LinearLayout

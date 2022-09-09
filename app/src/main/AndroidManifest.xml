@@ -14,42 +14,67 @@
         android:theme="@style/Theme.BanGiay2"
         tools:targetApi="31">
         <activity
+            android:label="Các mặt hàng trong hóa đơn"
             android:name=".DS_SP_Trong_HoaDonXuat"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".QLHoaDonXuat"/>
         <activity
+            android:label="Quản lý hóa đơn xuát"
             android:name=".QLHoaDonXuat"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:label="Xuất hàng"
             android:name=".XuatHangAction"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".XuatKhoActivity"/>
         <activity
+            android:label="Xuất hàng"
             android:name=".XuatKhoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:label="Các mặt hàng trong hóa đơn"
             android:name=".DS_SP_Trong_HoaDonNhap"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".QLHoaDonNhap"/>
         <activity
+            android:label="Quản lý hóa đơn nhập"
             android:name=".QLHoaDonNhap"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:label="Nhập hàng"
             android:name=".Them_SP_Moi_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".NhapHangActivity"/>
         <activity
+            android:label="Nhập hàng"
             android:name=".Them_SP_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".NhapHangActivity"/>
         <activity
+            android:label="Nhập hàng"
             android:name=".NhapHangActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:label="Sủa thông tin sản phẩm"
             android:name=".SuaSP_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".HangTrongKho_Activity"/>
         <activity
+            android:label="Hàng trong kho"
             android:name=".HangTrongKho_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
+            android:label="Quên mật khẩu"
             android:name=".QuenMK"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".DangNhap"/>
         <activity
+            android:label="Đăng ký"
             android:name=".DangKy"
             android:exported="false"
             android:parentActivityName=".DangNhap" />
@@ -63,6 +88,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:label="Quản lý bán giày"
             android:name=".MainActivity"
             android:exported="true"
             android:parentActivityName=".DangNhap" />

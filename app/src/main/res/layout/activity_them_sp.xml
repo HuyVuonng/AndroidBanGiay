@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextTenSanPhamThem"
             android:hint="Số lượng sản phẩm"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textSize="20sp" />
 
         <EditText
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editTextSoLuongSanPhamThem"
             android:hint="Giá nhập sản phẩm"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textSize="20sp" />
 
 

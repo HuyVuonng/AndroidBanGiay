@@ -47,7 +47,7 @@ public class NhapHangActivity extends AppCompatActivity {
         themSpmoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 intent = new Intent(NhapHangActivity.this,Them_SP_Moi_Activity.class);
+                 intent = new Intent(NhapHangActivity.this,Them_SP_Activity.class);
                  startActivity(intent);
             }
         });

@@ -82,7 +82,7 @@ public class Them_SP_Activity extends AppCompatActivity {
                 String maHangThem,tenHangThem,slhangThem,giaSPNhap;
                 int slhangThemINT;
                 float giaHagThemFloat,giaban;
-
+                int tontai=0;
                 boolean slDangSo=false;
 
 
@@ -113,10 +113,27 @@ public class Them_SP_Activity extends AppCompatActivity {
                         float lai=giaHagThemFloat/10;
 
                         giaban=giaHagThemFloat+lai;
+                        int vitri=0;
+
+                        for(int i=0;i<arrayList.size();i++){
+                            if(maHangThem.equalsIgnoreCase(arrayList.get(i).getMaHang().toString().trim())){
+                                tontai=1;
+                                vitri=i;
+                                break;
+                            }
+                        }
 
 
+                        if(tontai==1){
 
-                            slCu = Integer.parseInt(slsp);
+                            if(TextUtils.isEmpty(slsp)){
+                                slCu= arrayList.get(vitri).getSoLuong();
+                            }
+                            else{
+                                slCu=Integer.parseInt(slsp);
+                            }
+
+
                             slTong= slCu+slhangThemINT;
                             int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
                             String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
@@ -125,8 +142,24 @@ public class Them_SP_Activity extends AppCompatActivity {
                             database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
                             Toast.makeText(Them_SP_Activity.this,"Thêm thành công",Toast.LENGTH_LONG).show();
 
-                        intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
+                            intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
                             startActivity(intent);
+
+                        }
+
+                        else{
+                            int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
+                            String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
+
+
+                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaban+"')");
+                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
+                            Toast.makeText(Them_SP_Activity.this,"Them Sp moi thành công",Toast.LENGTH_LONG).show();
+                            intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
+                            startActivity(intent);
+                        }
+
+
 
 
                     }
@@ -153,7 +186,7 @@ public class Them_SP_Activity extends AppCompatActivity {
 
     private void getdataHoaDonNhap(){
         Cursor dataHoaDonNhap = database.GetData("SELECT * FROM HoaDonNhap ");
-        arrayList.clear();
+        arrayListHoaDonNhap.clear();
         while (dataHoaDonNhap.moveToNext()) {
             int maHD = dataHoaDonNhap.getInt(0);
             String ngayNhap = dataHoaDonNhap.getString(1);
