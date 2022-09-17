@@ -67,7 +67,8 @@
             android:label="Hàng trong kho"
             android:name=".HangTrongKho_Activity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:label="Quên mật khẩu"
             android:name=".QuenMK"

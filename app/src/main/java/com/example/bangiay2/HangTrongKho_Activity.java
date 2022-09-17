@@ -6,7 +6,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -85,6 +87,53 @@ public class HangTrongKho_Activity extends AppCompatActivity {
             }
         });
 
+
+        //Tìm kiếm trực tiếp khi nhập vào edt mà không phải nhấn tìm
+        edtTimKiem.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String NDTIM= edtTimKiem.getText().toString().trim();
+                if(TextUtils.isEmpty(NDTIM)){
+                    Cursor dataHang = database.GetData("SELECT * FROM Hang");
+                    arrayList.clear();
+                    while (dataHang.moveToNext()) {
+                        int SL = dataHang.getInt(2);
+                        String TenHang = dataHang.getString(1);
+                        String MaHang = dataHang.getString(0);
+                        float Gia=dataHang.getInt(3);
+                        arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+                    }
+                    adapter.notifyDataSetChanged();
+                    adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+                    lv.setAdapter(adapter);
+                    return;
+                }
+
+
+                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%"+NDTIM+"%' or TENlOAIGIAY Like '%"+NDTIM+"%' ");
+                arrayList.clear();
+                while (dataHang.moveToNext()) {
+                    int SL = dataHang.getInt(2);
+                    String TenHang = dataHang.getString(1);
+                    String MaHang = dataHang.getString(0);
+                    float Gia=dataHang.getInt(3);
+                    arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+                }
+                adapter.notifyDataSetChanged();
+                adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+                lv.setAdapter(adapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         giamdan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
