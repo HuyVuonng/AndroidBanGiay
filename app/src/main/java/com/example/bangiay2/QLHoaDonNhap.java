@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import java.util.Collections;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,6 +18,9 @@ import com.example.bangiay2.Class.HoaDonNhap;
 import com.example.bangiay2.Database.DatabaseQuanLy;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class QLHoaDonNhap extends AppCompatActivity {
 
@@ -72,7 +76,20 @@ public class QLHoaDonNhap extends AppCompatActivity {
             }
             dataChitietHoadonNhap.moveToFirst();
             arrayList.add(new HoaDonNhap(ngaytaoHD,maHD,TONGTIENNHAP));
+
         }
+//Sắp xếp tổng tiền giảm dần
+        for(int i=0;i<arrayList.size();i++){
+            for(int j=i+1;j<arrayList.size();j++){
+                if(arrayList.get(i).getTongtien() < arrayList.get(j).getTongtien()){
+                    HoaDonNhap tg1;
+                    tg1=arrayList.get(i);
+                    arrayList.set(i,arrayList.get(j));
+                    arrayList.set(j,tg1);
+                }
+            }
+        }
+
         adapter.notifyDataSetChanged();
     }
 }

@@ -10,8 +10,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,9 @@ public class HangTrongKho_Activity extends AppCompatActivity {
     Intent intent;
     ArrayList<Hang> arrayList;
     Hang_Adapter adapter;
+    EditText edtTimKiem;
+    RadioButton tangdan,giamdan;
+    Button btnTim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,10 @@ public class HangTrongKho_Activity extends AppCompatActivity {
 
 
         lv = findViewById(R.id.lvloaigiay);
+        edtTimKiem=findViewById(R.id.edtTimKiem);
+        btnTim=findViewById(R.id.btnTimKiemhangTRongKho);
+        tangdan=findViewById(R.id.rdoGiaTang);
+        giamdan=findViewById(R.id.rdoGiaGiam);
         arrayList = new ArrayList<>();
         adapter = new Hang_Adapter(this,R.layout.dong_hang_trong_kho,arrayList);
         lv.setAdapter(adapter);
@@ -52,8 +61,70 @@ public class HangTrongKho_Activity extends AppCompatActivity {
         hienthiDL();
 
 
+        btnTim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String NDTIM= edtTimKiem.getText().toString().trim();
+                if(TextUtils.isEmpty(NDTIM)){
+                    Toast.makeText(HangTrongKho_Activity.this,"Bạn chưa nhập nội dung tìm kiếm",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%"+NDTIM+"%' or TENlOAIGIAY Like '%"+NDTIM+"%' ");
+                arrayList.clear();
+                while (dataHang.moveToNext()) {
+                    int SL = dataHang.getInt(2);
+                    String TenHang = dataHang.getString(1);
+                    String MaHang = dataHang.getString(0);
+                    float Gia=dataHang.getInt(3);
+                    arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+                }
+                adapter.notifyDataSetChanged();
+                adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+                lv.setAdapter(adapter);
+
+            }
+        });
 
 
+        giamdan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(giamdan.isChecked()){
+                    Cursor dataHang = database.GetData("SELECT * FROM Hang order by Gia DESC");
+                    arrayList.clear();
+                    while (dataHang.moveToNext()) {
+                        int SL = dataHang.getInt(2);
+                        String TenHang = dataHang.getString(1);
+                        String MaHang = dataHang.getString(0);
+                        float Gia=dataHang.getInt(3);
+                        arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+                    }
+                    adapter.notifyDataSetChanged();
+                    adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+                    lv.setAdapter(adapter);
+                }
+            }
+        });
+
+        tangdan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(tangdan.isChecked()){
+                    Cursor dataHang = database.GetData("SELECT * FROM Hang order by Gia ASC");
+                    arrayList.clear();
+                    while (dataHang.moveToNext()) {
+                        int SL = dataHang.getInt(2);
+                        String TenHang = dataHang.getString(1);
+                        String MaHang = dataHang.getString(0);
+                        float Gia=dataHang.getInt(3);
+                        arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+                    }
+                    adapter.notifyDataSetChanged();
+                    adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+                    lv.setAdapter(adapter);
+                }
+            }
+        });
     }
 
 

@@ -6,16 +6,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".HangTrongKho_Activity">
-    <TextView
-        android:id="@+id/tvDS"
+<!--    <TextView-->
+<!--        android:id="@+id/tvDS"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:text="Danh sách hàng trong kho"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="30dp"-->
+<!--        android:background="#F1F1F1"-->
+<!--        />-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="Danh sách hàng trong kho"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:background="#F1F1F1"
-        />
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtTimKiem"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:hint="Tìm kiếm...." />
+
+        <Button
+            android:id="@+id/btnTimKiemhangTRongKho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="Tìm" />
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/btnTimKiemhangTRongKho"
+            android:layout_alignParentRight="true">
+
+            <RadioButton
+                android:id="@+id/rdoGiaGiam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá cao đến thấp"/>
+            <RadioButton
+                android:id="@+id/rdoGiaTang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá thấp đến cao"/>
+        </RadioGroup>
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lvloaigiay"

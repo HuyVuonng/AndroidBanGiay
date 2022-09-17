@@ -126,12 +126,8 @@ public class Them_SP_Activity extends AppCompatActivity {
 
                         if(tontai==1){
 
-                            if(TextUtils.isEmpty(slsp)){
-                                slCu= arrayList.get(vitri).getSoLuong();
-                            }
-                            else{
+
                                 slCu=Integer.parseInt(slsp);
-                            }
 
 
                             slTong= slCu+slhangThemINT;
@@ -148,15 +144,7 @@ public class Them_SP_Activity extends AppCompatActivity {
                         }
 
                         else{
-                            int maHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getMaHoaDon();
-                            String NgaylapHD=arrayListHoaDonNhap.get(arrayListHoaDonNhap.size()-1).getNgayTaoHoaDon().toString().trim();
-
-
-                            database.QuerryData("INSERT INTO Hang VALUES('"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaban+"')");
-                            database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('"+maHD+"','"+NgaylapHD+"','"+maHangThem+"','"+tenHangThem+"','"+slhangThemINT+"','"+giaHagThemFloat+"')");
-                            Toast.makeText(Them_SP_Activity.this,"Them Sp moi thành công",Toast.LENGTH_LONG).show();
-                            intent= new Intent(Them_SP_Activity.this,NhapHangActivity.class);
-                            startActivity(intent);
+                           Toast.makeText(Them_SP_Activity.this,"Chưa tồn tại mã sản phẩm này",Toast.LENGTH_SHORT).show();
                         }
 
 
