@@ -58,6 +58,8 @@ public class DSHangTrongHoaDonXuatAdapter extends BaseAdapter {
             viewHolder.sl=view.findViewById(R.id.soluongsptronghdnhap);
             viewHolder.gia=view.findViewById(R.id.giaspTRongdsHoaDon);
 
+            view.setTag(viewHolder);
+
 
         }
         else{

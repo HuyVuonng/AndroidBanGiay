@@ -70,6 +70,8 @@ public class DSHoaDonNhapAdapter extends BaseAdapter {
             viewHolder.maHD=view.findViewById(R.id.maHDNhap);
             viewHolder.tongtien=view.findViewById(R.id.tongsotiennhap);
 
+            view.setTag(viewHolder);
+
 
 
         }

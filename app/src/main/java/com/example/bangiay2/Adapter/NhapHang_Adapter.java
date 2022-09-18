@@ -64,6 +64,8 @@ public class NhapHang_Adapter extends BaseAdapter {
             viewHolder.tvMagiayNhap=view.findViewById(R.id.masptrongkhoNhap);
             viewHolder.tvSLNhap=view.findViewById(R.id.soluongsptrongkhoNhap);
             viewHolder.imgNhap=view.findViewById(R.id.btnNhapThemSP);
+            view.setTag(viewHolder);
+
 
         }
         else{

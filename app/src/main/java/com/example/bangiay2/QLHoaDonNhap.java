@@ -79,16 +79,16 @@ public class QLHoaDonNhap extends AppCompatActivity {
 
         }
 //Sắp xếp tổng tiền giảm dần
-        for(int i=0;i<arrayList.size();i++){
-            for(int j=i+1;j<arrayList.size();j++){
-                if(arrayList.get(i).getTongtien() < arrayList.get(j).getTongtien()){
-                    HoaDonNhap tg1;
-                    tg1=arrayList.get(i);
-                    arrayList.set(i,arrayList.get(j));
-                    arrayList.set(j,tg1);
-                }
-            }
-        }
+//        for(int i=0;i<arrayList.size();i++){
+//            for(int j=i+1;j<arrayList.size();j++){
+//                if(arrayList.get(i).getTongtien() < arrayList.get(j).getTongtien()){
+//                    HoaDonNhap tg1;
+//                    tg1=arrayList.get(i);
+//                    arrayList.set(i,arrayList.get(j));
+//                    arrayList.set(j,tg1);
+//                }
+//            }
+//        }
 
         adapter.notifyDataSetChanged();
     }

@@ -68,6 +68,7 @@ public class Hang_Adapter extends BaseAdapter
             viewHolder.imgXoa=view.findViewById(R.id.btndelete);
             viewHolder.tvgia=view.findViewById(R.id.giasptrongkho);
 
+            view.setTag(viewHolder);
 
         }
         else{

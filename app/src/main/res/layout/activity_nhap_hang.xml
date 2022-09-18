@@ -7,20 +7,29 @@
     tools:context=".NhapHangActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvDSNhapHang"
+<!--    <TextView-->
+<!--        android:id="@+id/tvDSNhapHang"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:text="Nhập hàng"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="30dp"-->
+<!--        android:background="#F1F1F1"-->
+<!--        />-->
+    <EditText
+        android:id="@+id/edtTimKiemNhapHang"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="Nhập hàng"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        android:background="#F1F1F1"
+        android:layout_height="wrap_content"
+        android:hint="Tìm kiếm...."
+        android:inputType="textPersonName"
+
         />
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
 
     <ListView
         android:id="@+id/lvloaigiayNhap"

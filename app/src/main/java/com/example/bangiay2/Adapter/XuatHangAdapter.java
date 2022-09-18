@@ -65,6 +65,8 @@ public class XuatHangAdapter extends BaseAdapter {
             viewHolder.tvSLCoTRongKho=view.findViewById(R.id.soluongsptrongkhoXuat);
             viewHolder.imgXuat=view.findViewById(R.id.btnXuatSP);
             viewHolder.tvGia=view.findViewById(R.id.giaspsptrongkhoXuat);
+            view.setTag(viewHolder);
+
 
         }
         else{

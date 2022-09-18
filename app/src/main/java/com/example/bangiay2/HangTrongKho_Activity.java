@@ -42,7 +42,7 @@ public class HangTrongKho_Activity extends AppCompatActivity {
 
         lv = findViewById(R.id.lvloaigiay);
         edtTimKiem=findViewById(R.id.edtTimKiem);
-        btnTim=findViewById(R.id.btnTimKiemhangTRongKho);
+//        btnTim=findViewById(R.id.btnTimKiemhangTRongKho);
         tangdan=findViewById(R.id.rdoGiaTang);
         giamdan=findViewById(R.id.rdoGiaGiam);
         arrayList = new ArrayList<>();
@@ -63,29 +63,29 @@ public class HangTrongKho_Activity extends AppCompatActivity {
         hienthiDL();
 
 
-        btnTim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String NDTIM= edtTimKiem.getText().toString().trim();
-                if(TextUtils.isEmpty(NDTIM)){
-                    Toast.makeText(HangTrongKho_Activity.this,"Bạn chưa nhập nội dung tìm kiếm",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%"+NDTIM+"%' or TENlOAIGIAY Like '%"+NDTIM+"%' ");
-                arrayList.clear();
-                while (dataHang.moveToNext()) {
-                    int SL = dataHang.getInt(2);
-                    String TenHang = dataHang.getString(1);
-                    String MaHang = dataHang.getString(0);
-                    float Gia=dataHang.getInt(3);
-                    arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
-                }
-                adapter.notifyDataSetChanged();
-                adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
-                lv.setAdapter(adapter);
-
-            }
-        });
+//        btnTim.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String NDTIM= edtTimKiem.getText().toString().trim();
+//                if(TextUtils.isEmpty(NDTIM)){
+//                    Toast.makeText(HangTrongKho_Activity.this,"Bạn chưa nhập nội dung tìm kiếm",Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%"+NDTIM+"%' or TENlOAIGIAY Like '%"+NDTIM+"%' ");
+//                arrayList.clear();
+//                while (dataHang.moveToNext()) {
+//                    int SL = dataHang.getInt(2);
+//                    String TenHang = dataHang.getString(1);
+//                    String MaHang = dataHang.getString(0);
+//                    float Gia=dataHang.getInt(3);
+//                    arrayList.add(new Hang(MaHang,TenHang,SL,Gia));
+//                }
+//                adapter.notifyDataSetChanged();
+//                adapter= new Hang_Adapter(HangTrongKho_Activity.this,R.layout.dong_hang_trong_kho,arrayList);
+//                lv.setAdapter(adapter);
+//
+//            }
+//        });
 
 
         //Tìm kiếm trực tiếp khi nhập vào edt mà không phải nhấn tìm

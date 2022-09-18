@@ -22,25 +22,19 @@
 
         <EditText
             android:id="@+id/edtTimKiem"
-            android:layout_width="303dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tìm kiếm...."
             android:inputType="textPersonName"
 
             />
 
-        <Button
-            android:id="@+id/btnTimKiemhangTRongKho"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:text="Tìm" />
+
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/btnTimKiemhangTRongKho"
+            android:layout_below="@+id/edtTimKiem"
             android:layout_alignParentRight="true">
 
             <RadioButton

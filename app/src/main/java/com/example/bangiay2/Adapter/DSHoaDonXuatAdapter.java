@@ -57,6 +57,8 @@ public class DSHoaDonXuatAdapter extends BaseAdapter {
             viewHolder.maHD=view.findViewById(R.id.maHDXuat);
             viewHolder.tongtien=view.findViewById(R.id.tongsotienmaHDXuat);
 
+            view.setTag(viewHolder);
+
 
 
         }
